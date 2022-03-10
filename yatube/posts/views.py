@@ -3,8 +3,11 @@ from django.shortcuts import render, get_object_or_404
 from .models import Post, Group
 
 
+count_posts = 10
+
+
 def index(request):
-    posts = Post.objects.order_by('-pub_date')[:10]
+    posts = Post.objects.order_by('-pub_date')[:count_posts]
     # В словаре context отправляем информацию в шаблон
     context = {
         'posts': posts,
@@ -14,7 +17,7 @@ def index(request):
 
 def group_posts(request, slug):
     group = get_object_or_404(Group, slug=slug)
-    posts = Post.objects.filter(group='Группа')
+    posts = Post.objects.filter(group=group)
     context = {
         'group': group,
         'posts': posts,
