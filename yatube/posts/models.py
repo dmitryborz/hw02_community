@@ -35,3 +35,11 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['-pub_date']
+
+
+class Contact(models.Model):
+    name = models.CharField(max_length=100)
+    email = models.EmailField()
+    subject = models.CharField(max_length=100)
+    body = models.TextField()
+    is_answered = models.BooleanField(default=False)
